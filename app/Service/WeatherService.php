@@ -59,6 +59,7 @@ class WeatherService
         } else {
             $data = $this->getWeatherForDateAPI($date);
             UpdateWeatherDateEvent::dispatch($date, $data);
+            return $this->getWeatherForDateDB($date);
         }
     }
 }

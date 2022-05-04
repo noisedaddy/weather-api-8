@@ -34,6 +34,7 @@
                         url: 'api/weather/'+selectedDate, // This is what I have updated
                     }).done(function( msg ) {
                         $.each(msg, function( index, value ) {
+                            console.log(value.location);
                             var weather_data = JSON.parse(value.weather_details);
                             var weather_data_all = JSON.parse(value.content_raw);
                             $('.weather-result').append('<div><strong>'+value.location+'</strong></div><div>'+weather_data[0]['description']+'</div><div>'+JSON.stringify(weather_data_all)+'</div>')
