@@ -33,11 +33,12 @@
                         type: "GET",
                         url: 'api/weather/'+selectedDate, // This is what I have updated
                     }).done(function( msg ) {
+                        $('div.weather-result').empty();
                         $.each(msg, function( index, value ) {
                             console.log(value.location);
                             var weather_data = JSON.parse(value.weather_details);
                             var weather_data_all = JSON.parse(value.content_raw);
-                            $('.weather-result').append('<div><strong>'+value.location+'</strong></div><div>'+weather_data[0]['description']+'</div><div>'+JSON.stringify(weather_data_all)+'</div>')
+                            $('.weather-result').append('<div class="weather-items"><div><strong>'+value.location+'</strong></div><div>'+weather_data[0]['description']+'</div><div>'+JSON.stringify(weather_data_all)+'</div></div>')
                         });
                     });
                 }
@@ -49,8 +50,10 @@
 <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 py-4 sm:pt-0">
     <p>Date: <input type="text" id="datepicker"></p>
 </div>
-<div class="row weather-result">
+<div class="row">
+    <div class="weather-result">
 
+    </div>
 </div>
 </body>
 </html>
