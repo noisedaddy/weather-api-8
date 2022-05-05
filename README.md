@@ -3,8 +3,8 @@
 - Clone the repo
 - Create .env file with DB params: cp .env.example .env
 - composer install
-- php artisan migrate
-- php artisan serve
+- ```php artisan migrate```
+- ```php artisan serve```
 
 
 ## PHPUNIT tests
@@ -17,7 +17,7 @@ DB_DATABASE=weather-testing
 DB_USERNAME=root
 DB_PASSWORD=
 ```
-- Run php artisan key:generate --env=testing
-- Migrate the testing database: php artisan migrate --env=testing
-- Run the test suite to confirm everything works: php artisan test
-- Run php artisan schedule:work to start scheduled job(initial setup is to run every 6 hours but can be tested to run every minute) 
+- Run ```php artisan key:generate --env=testing```
+- Migrate the testing database: ```php artisan migrate --env=testing```
+- Run the test suite to confirm everything works: ```php artisan test```
+- Run ```php artisan schedule:work``` to start scheduled job(initial setup is to run every 6 hours but can be tested to run every minute) 
