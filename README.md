@@ -12,11 +12,11 @@
 - Copy .env.example to .env.testing so that your testing environment has its own configuration
 - Create a new database specifically for this testing environment, e.g. weather-testing
 - Add this new database name to the DB_DATABASE variable inside .env.testing
-DB_HOST=localhost
+```DB_HOST=localhost
 DB_DATABASE=weather-testing
 DB_USERNAME=root
 DB_PASSWORD=
-
+```
 - Run php artisan key:generate --env=testing
 - Migrate the testing database: php artisan migrate --env=testing
 - Run the test suite to confirm everything works: php artisan test
