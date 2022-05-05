@@ -2,7 +2,7 @@
 
 - Clone the repo
 - Create .env file with DB params: cp .env.example .env
-- composer install
+- ```composer install```
 - ```php artisan migrate```
 - ```php artisan serve```
 
