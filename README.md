@@ -1,10 +1,10 @@
 ## Initial setup
 
-1.Clone the repo
-2.Create .env file with DB params: cp .env.example .env
-3.composer install
-4.php artisan migrate
-5.php artisan serve
+- Clone the repo
+- Create .env file with DB params: cp .env.example .env
+- composer install
+- php artisan migrate
+- php artisan serve
 
 
 ## PHPUNIT tests
