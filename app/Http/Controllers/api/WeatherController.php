@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 class WeatherController extends Controller
 {
     public function index() {
-//        $weather = Weather::all();
-//        return response()->json([
-//            "success" => true,
-//            "message" => "Weather",
-//            "data" => $weather
-//        ]);
+        $weather = Weather::all();
+        return response()->json([
+            "success" => true,
+            "message" => "Weather",
+            "data" => $weather
+        ]);
     }
 
     /**
@@ -37,19 +37,19 @@ class WeatherController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request) {
-//        $input = $request->all();
-//        $validator = Validator::make($input, [
-//            'date' => 'required',
-//        ]);
-//        if($validator->fails()){
-//            return $this->sendError('Validation Error.', $validator->errors());
-//        }
-//        $weather = Weather::create($input);
-//        return response()->json([
-//            "success" => true,
-//            "message" => "Weather added successfully.",
-//            "data" => $weather
-//        ]);
+        $input = $request->all();
+        $validator = \Illuminate\Support\Facades\Validator::make($input, [
+            'date' => 'required',
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+        $weather = Weather::create($input);
+        return response()->json([
+            "success" => true,
+            "message" => "Weather added successfully.",
+            "data" => $weather
+        ]);
     }
 
     /**
@@ -60,23 +60,23 @@ class WeatherController extends Controller
      */
     public function update(Request $request, Weather $weather) {
 
-//        $input = $request->all();
-//        $validator = Validator::make($input, [
-//            'name' => 'required',
-//            'detail' => 'required'
-//        ]);
-//        if($validator->fails()){
-//            return $this->sendError('Validation Error.', $validator->errors());
-//        }
-//        $weather->location = $input['name'];
-//        $weather->weather_details = $input['weather_details'];
-//        $weather->save();
-//
-//        return response()->json([
-//            "success" => true,
-//            "message" => "weather updated successfully.",
-//            "data" => $weather
-//        ]);
+        $input = $request->all();
+        $validator = \Illuminate\Support\Facades\Validator::make($input, [
+            'name' => 'required',
+            'detail' => 'required'
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+        $weather->location = $input['name'];
+        $weather->weather_details = $input['weather_details'];
+        $weather->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "weather updated successfully.",
+            "data" => $weather
+        ]);
     }
 
     /**
@@ -85,11 +85,11 @@ class WeatherController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Weather $weather) {
-//        $weather->delete();
-//        return response()->json([
-//            "success" => true,
-//            "message" => "weather deleted successfully.",
-//            "data" => $weather
-//        ]);
+        $weather->delete();
+        return response()->json([
+            "success" => true,
+            "message" => "weather deleted successfully.",
+            "data" => $weather
+        ]);
     }
 }
