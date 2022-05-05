@@ -57,9 +57,19 @@ class WeatherService
         if (count($weather) > 0) {
             return $weather;
         } else {
-            $data = $this->getWeatherForDateAPI($date);
-            UpdateWeatherDateEvent::dispatch($date, $data);
-            return $this->getWeatherForDateDB($date);
+            return $this->updateWeatherForDate($date);
         }
+    }
+
+    /**
+     * Update weather from api
+     * @param $date
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateWeatherForDate($date) {
+        $data = $this->getWeatherForDateAPI($date);
+        UpdateWeatherDateEvent::dispatch($date, $data);
+        return $this->getWeatherForDateDB($date);
     }
 }

@@ -62,23 +62,22 @@ class WeatherController extends Controller
      * @param Weather $weather
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Weather $weather) {
-
-        $input = $request->all();
+    public function update(Request $request) {
+        $input = ['date' => $request->date];
         $validator = \Illuminate\Support\Facades\Validator::make($input, [
-            'name' => 'required',
-            'detail' => 'required'
+            'date' => 'required',
         ]);
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+            return response()->json([
+                'success'   => false,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+            ]);
         }
-        $weather->location = $input['name'];
-        $weather->weather_details = $input['weather_details'];
-        $weather->save();
-
+        $weather = app(WeatherService::class)->updateWeatherForDate(strtotime($request->date));
         return response()->json([
             "success" => true,
-            "message" => "weather updated successfully.",
+            "message" => "Weather updated successfully.",
             "data" => $weather
         ]);
     }
