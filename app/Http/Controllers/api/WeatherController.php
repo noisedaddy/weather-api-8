@@ -37,14 +37,18 @@ class WeatherController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request) {
-        $input = $request->all();
+        $input = ['date' => $request->date];
         $validator = \Illuminate\Support\Facades\Validator::make($input, [
             'date' => 'required',
         ]);
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+            return response()->json([
+                'success'   => false,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+                ]);
         }
-        $weather = Weather::create($input);
+        $weather = app(WeatherService::class)->getWeatherForDate(strtotime($request->date));
         return response()->json([
             "success" => true,
             "message" => "Weather added successfully.",
